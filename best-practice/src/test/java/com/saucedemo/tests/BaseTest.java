@@ -121,6 +121,8 @@ public class BaseTest {
             if(driver != null)
             {
                 System.out.println("Test Passed!");
+                String sauceReporter = String.format("SauceOnDemandSessionID=%s job-name=%s", driver.getSessionId(), name.getMethodName());
+                System.out.println(sauceReporter);
                 driver.executeScript("sauce:job-result=passed");
                 driver.quit();
             }
@@ -131,6 +133,8 @@ public class BaseTest {
             if(driver != null)
             {
                 System.out.println("Test Failed!");
+                String sauceReporter = String.format("SauceOnDemandSessionID=%s job-name=%s", driver.getSessionId(), name.getMethodName());
+                System.out.println(sauceReporter);
                 driver.executeScript("sauce:job-result=failed");
                 driver.executeScript("sauce:context=" +e.getMessage());
                 driver.quit();
@@ -138,5 +142,4 @@ public class BaseTest {
         }
 
     };
-
 }
